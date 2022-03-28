@@ -1,0 +1,15 @@
+.toolbar{
+  position: absolute;
+  top: $header-height;
+  height: $toolbar-height;
+  left: 0;
+  right: 0;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  &__button{
+    @include button();
+    text-align: center;
+  }
+}

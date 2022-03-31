@@ -2,6 +2,15 @@ import { ExcelComponent } from "../../core/ExcelComponent";
 
 export class Header extends ExcelComponent{
   static className = 'header'
+
+  constructor($root, options) {
+    super($root, {
+      name: 'Header',
+      listeners: [],
+      ...options
+    })
+  }
+
   toHTML(){
     return `
     <input type="text" class="header__input" value="New table"/>

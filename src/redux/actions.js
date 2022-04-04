@@ -40,3 +40,4 @@ export function updateDate() {
     type: UPDATE_DATE
   }
 }
+

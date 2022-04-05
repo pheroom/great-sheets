@@ -114,6 +114,11 @@ class Dom {
     this.$el.classList.remove(className)
     return this
   }
+
+  toggle(className){
+    this.$el.classList.toggle(className)
+    return this
+  }
 }
 
 export function $(selector) {

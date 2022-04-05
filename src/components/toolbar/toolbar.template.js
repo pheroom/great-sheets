@@ -13,6 +13,45 @@ function toButton(button) {
   `
 }
 
+const colors = [`black`, `white`, `blue`, `yellow`, `green`, `grey`, `red`, `aqua`, `darkgoldenrod`, `deeppink`, `indigo`, `dodgerblue`]
+
+function printColor(colors){
+  return colors.map(color => {
+    return `
+      <div 
+        class="select-modal__item" 
+        data-type="selectItem" 
+        data-value=${color}
+        style="height: 15px; width: 15px; background: ${color}"
+      ></div>`
+  })
+}
+
+function toSelect(button){
+  const meta = `
+    data-type="selectBtn"
+    data-value='${JSON.stringify(button.value)}'
+  `
+
+  return `
+    <div data-type="select" class="toolbar__select">
+      <i 
+        class="material-icons"
+        ${meta}
+      >${button.icon}</i>
+      <div data-type="select-modal" class="select-modal select-modal--hidden">
+      <div class="select-modal__inner">
+        ${printColor(colors).join(' ')}
+      </div>
+      <div class="select-modal__button">
+          <i data-type="toHide" class="material-icons">clear</i>
+      </div>
+      </div>
+    </div>
+    <div class="select-led" style="background: ${button.active}"></div>
+  `
+}
+
 export function createToolbar(state) {
   const buttons = [
     {
@@ -47,5 +86,20 @@ export function createToolbar(state) {
     },
   ]
 
-  return buttons.map(toButton).join('')
+  const select = [
+    {
+      icon: 'format_color_fill',
+      active: state['background'],
+      value: {background: '#fff'}
+    },
+    {
+      icon: 'format_color_text',
+      active: state['color'],
+      value: {color: '#000'}
+    },
+  ]
+
+
+
+  return buttons.map(toButton).concat(select.map(toSelect)).join('')
 }

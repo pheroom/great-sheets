@@ -1,105 +1,75 @@
-function toButton(button) {
-  const meta = `
-    data-type="button"
-    data-value='${JSON.stringify(button.value)}'
-  `
-  return `
-    <div class="toolbar__button">
-      <i 
-        class="material-icons ${button.active ? 'active' : ''}"
-        ${meta}
-      >${button.icon}</i>
-    </div>
-  `
-}
-
-const colors = [`black`, `white`, `blue`, `yellow`, `green`, `grey`, `red`, `aqua`, `darkgoldenrod`, `deeppink`, `indigo`, `dodgerblue`]
-
-function printColor(colors){
-  return colors.map(color => {
-    return `
-      <div 
-        class="select-modal__item" 
-        data-type="selectItem" 
-        data-value=${color}
-        style="height: 15px; width: 15px; background: ${color}"
-      ></div>`
-  })
-}
-
-function toSelect(button){
-  const meta = `
-    data-type="selectBtn"
-    data-value='${JSON.stringify(button.value)}'
-  `
-
-  return `
-    <div data-type="select" class="toolbar__select">
-      <i 
-        class="material-icons"
-        ${meta}
-      >${button.icon}</i>
-      <div data-type="select-modal" class="select-modal select-modal--hidden">
-      <div class="select-modal__inner">
-        ${printColor(colors).join(' ')}
-      </div>
-      <div class="select-modal__button">
-          <i data-type="toHide" class="material-icons">clear</i>
-      </div>
-      </div>
-    </div>
-    <div class="select-led" style="background: ${button.active}"></div>
-  `
-}
+import textCenterImg from './../../assets/icons/textCenter.png'
+import textLeftImg from './../../assets/icons/textLeft.png'
+import textRightImg from './../../assets/icons/textRight.png'
+import textBoldImg from './../../assets/icons/textBold.png'
+import textUnderlineImg from './../../assets/icons/textUnderline.png'
+import textItalicImg from './../../assets/icons/textItalic.png'
+import fillImg from './../../assets/icons/fill.png'
+import strokeImg from './../../assets/icons/stroke.png'
+import {toButton, toColorInput} from "@/components/UI/ui.template";
 
 export function createToolbar(state) {
-  const buttons = [
-    {
-      icon: 'format_align_left',
-      active: state['textAlign'] === 'left',
-      value: {textAlign: 'left'}
-    },
-    {
-      icon: 'format_align_center',
-      active: state['textAlign'] === 'center',
-      value: {textAlign: 'center'}
-    },
-    {
-      icon: 'format_align_right',
-      active: state['textAlign'] === 'right',
-      value: {textAlign: 'right'}
-    },
-    {
-      icon: 'format_bold',
-      active: state['fontWeight'] === 'bold',
-      value: {fontWeight: state['fontWeight'] === 'bold' ? 'normal' : 'bold'}
-    },
-    {
-      icon: 'format_underlined',
-      active: state['textDecoration'] === 'underline',
-      value: {textDecoration: state['textDecoration'] === 'underline' ? 'none' : 'underline'}
-    },
-    {
-      icon: 'format_italic',
-      active: state['fontStyle'] === 'italic',
-      value: {fontStyle: state['fontStyle'] === 'italic' ? 'normal' : 'italic'}
-    },
-  ]
+    const buttons = [
+        {
+            meta: `data-type="button" data-value='${JSON.stringify({textAlign: 'left'})}'`,
+            icon: 'format_align_left',
+            img: textLeftImg,
+            alt: 'left',
+            active: state['textAlign'] === 'left',
+        },
+        {
+            meta: `data-type="button" data-value='${JSON.stringify({textAlign: 'center'})}'`,
+            icon: 'format_align_center',
+            img: textCenterImg,
+            alt: 'center',
+            active: state['textAlign'] === 'center',
+        },
+        {
+            meta: `data-type="button" data-value='${JSON.stringify({textAlign: 'right'})}'`,
+            icon: 'format_align_right',
+            img: textRightImg,
+            alt: 'right',
+            active: state['textAlign'] === 'right',
+        },
+        {
+            meta: `data-type="button" data-value='${JSON.stringify({fontWeight: state['fontWeight'] === 'bold' ? 'normal' : 'bold'})}'`,
+            icon: 'format_bold',
+            img: textBoldImg,
+            alt: 'bold',
+            active: state['fontWeight'] === 'bold',
+        },
+        {
+            meta: `data-type="button" data-value='${JSON.stringify({textDecoration: state['textDecoration'] === 'underline' ? 'none' : 'underline'})}'`,
+            icon: 'format_underlined',
+            img: textUnderlineImg,
+            alt: 'underline',
+            active: state['textDecoration'] === 'underline',
+        },
+        {
+            meta: `data-type="button" data-value='${JSON.stringify({fontStyle: state['fontStyle'] === 'italic' ? 'normal' : 'italic'})}'`,
+            icon: 'format_italic',
+            img: textItalicImg,
+            alt: 'italic',
+            active: state['fontStyle'] === 'italic',
+        },
+    ]
 
-  const select = [
-    {
-      icon: 'format_color_fill',
-      active: state['background'],
-      value: {background: '#fff'}
-    },
-    {
-      icon: 'format_color_text',
-      active: state['color'],
-      value: {color: '#000'}
-    },
-  ]
+    const colorInputs = [
+        {
+            img: fillImg,
+            alt: 'fill',
+            field: 'background',
+            value: state.background
+        },
+        {
+            img: strokeImg,
+            alt: 'stroke',
+            field: 'color',
+            value: state.color
+        },
+    ]
 
 
 
-  return buttons.map(toButton).concat(select.map(toSelect)).join('')
+    return [].concat(buttons.map(toButton), colorInputs.map(toColorInput)).join('')
 }

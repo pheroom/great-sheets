@@ -1,81 +1,139 @@
 .table{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: $header-height + $formula-height + $toolbar-height;
-  overflow: auto;
-  padding-bottom: 2px;
-  &__row{
-    display: flex;
-    flex-direction: row;
-    min-height: 20px;
-    height: $row-height;
-  }
-  &__row-info{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: $info-cell-width;
-    height: 100%;
-    border: 1px solid $border-color;
-    background: #f8f9fa;
-    border-top: none;
-  }
-  &__row-data{
-    display: flex;
-  }
-  &__row-data-column{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f8f9fa;
-    min-width: 40px;
-    width: $cell-width;
-    height: 100%;
-    border-bottom: 1px solid $border-color;
-    border-right: 1px solid $border-color;
-  }
-  &__col-resize, &__row-resize{
-    opacity: 0;
     position: absolute;
-    right: 0;
-    bottom: 0; 
-    background: $primary_color;
-    z-index: 10;
-    &:hover{
-      opacity: 1!important;
-    }
-  }
-  &__col-resize{
-    top: 0;
-    width: 4px; 
-    &:hover{
-      cursor: col-resize;
-    }
-  }
-  &__row-resize{
     left: 0;
-    height: 4px;
-    &:hover{
-      cursor: row-resize;
+    right: 0;
+    top: $header-height + $formula-height + $toolbar-height;
+    overflow: auto;
+    height: calc(100vh - ($header-height + $formula-height + $toolbar-height));
+    padding-bottom: 2px;
+    user-select: none;
+    &::-webkit-scrollbar{
+        width: 10px;
+        height: 10px;
     }
-  }
-  &__row-data-cell{
-    min-width: 40px;
-    padding: 5px;
-    width: $cell-width;
-    height: 100%;
-    border-right: 1px solid #e2e3ea;
-    border-bottom: 1px solid #e2e3ea;
-    color: black;
-    white-space: nowrap;
-    outline: none;
-    &--selected{
-      border: none;
-      outline: 2px solid $primary_color;
-      z-index: 2;
+    &::-webkit-scrollbar-thumb{
+        background-color: #DADCE0;
+        &:hover{
+            background-color: #c9ccd3;
+        }
+        border-radius: 20px;
     }
-  }
+    &__row{
+        display: flex;
+        flex-direction: row;
+        min-height: 20px;
+        height: $row-height;
+    }
+    &__row-info{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: $info-cell-width;
+        height: 100%;
+        color: black;
+        border: 1px solid $border-color;
+        border-top: none;
+    }
+    &__row-data{
+        display: flex;
+    }
+    &__row-data-column{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 40px;
+        width: $cell-width;
+        color: black;
+        height: 100%;
+        border-bottom: 1px solid $border-color;
+        border-right: 1px solid $border-color;
+    }
+    &__col-resize, &__row-resize{
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: #c0bcbc;
+        z-index: 10;
+        &:hover{
+            opacity: 1!important;
+        }
+    }
+    &__col-resize{
+        top: 0;
+        width: 4px;
+        &:hover{
+            cursor: col-resize;
+        }
+    }
+    &__row-resize{
+        left: 0;
+        height: 4px;
+        &:hover{
+            cursor: row-resize;
+        }
+    }
+    &__row-data-cell{
+        min-width: 40px;
+        padding: 5px;
+        width: $cell-width;
+        height: 100%;
+        border-left: 1px solid transparent;
+        border-top: 1px solid transparent;
+        border-right: 1px solid #e2e3ea;
+        border-bottom: 1px solid #e2e3ea;
+        color: black;
+        white-space: nowrap;
+        outline: none;
+        &--selected{
+            border: 1px solid transparent;
+            outline: 2px solid $primary_color;
+            z-index: 2;
+        }
+        &--selected-left{
+            border-left: 1px solid $primary_color;
+        }
+        &--selected-right{
+            border-right: 1px solid $primary_color;
+        }
+        &--selected-top{
+            border-top: 1px solid $primary_color;
+        }
+        &--selected-bottom{
+            border-bottom: 1px solid $primary_color;
+        }
+        &--selected-fill{
+            background-color: rgba($primary_color, .1) !important;
+        }
+    }
+}
+
+.add-rows-form{
+    margin: 10px $info-cell-width;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    &__input{
+        border: 2px solid #e7e7e7;
+        width: 100px;
+    }
+    &__button{
+        outline: none;
+        cursor: pointer;
+        border: none;
+        height: 30px;
+        font-size: 14px;
+        background: none;
+        border-radius: 15px;
+        padding: 0 15px;
+        &:hover{
+            background: rgba($primary_color, .3);
+        }
+    }
+    &__i{
+        margin-top: 3px;
+    }
 }

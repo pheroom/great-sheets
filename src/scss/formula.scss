@@ -1,24 +1,28 @@
 .formula{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: $header-height + $toolbar-height;
-  height: $formula-height;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid $border-color;
-  &__info{
-    font-size: 18px;
-    font-style: italic;
-    text-align: center;
-    border-right: 1px solid $border-color;
-    min-width: $info-cell-width;
-  }
-  &__input{
-    padding: 5px;
-    outline: none;
-    height: 100%;
-    width: 100%;
-    color: black;
-  }
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $header-height + $toolbar-height;
+    height: $formula-height;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $border-color;
+    &__info{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $formula-height;
+        border-right: 1px solid $border-color;
+        min-width: $info-cell-width;
+    }
+    &__icon{
+        height: 100%;
+    }
+    &__input{
+        padding: 5px;
+        outline: none;
+        height: 100%;
+        width: 100%;
+        color: black;
+    }
 }

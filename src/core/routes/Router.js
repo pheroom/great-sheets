@@ -1,46 +1,46 @@
 import {$} from "@core/dom";
 import {ActiveRoute} from "@core/routes/ActiveRoute";
-import {Loader} from "@/components/Loader";
+import {Loader} from "@/components/UI/Loader";
 
 export class Router{
-  constructor(selector, routes) {
-    this.$placeholder = $(selector)
-    this.routes = routes
+    constructor(selector, routes) {
+        this.$placeholder = $(selector)
+        this.routes = routes
 
-    this.loader = new Loader()
+        this.loader = new Loader()
 
-    this.page = null
+        this.page = null
 
-    this.changePageHandler = this.changePageHandler.bind(this)
+        this.changePageHandler = this.changePageHandler.bind(this)
 
-    this.init()
-  }
-
-  init(){
-    window.addEventListener('hashchange', this.changePageHandler)
-    this.changePageHandler()
-  }
-
-  async changePageHandler(){
-    if(this.page){
-      this.page.destroy()
+        this.init()
     }
-    this.$placeholder.clear().append(this.loader)
 
-    const Page = ActiveRoute.path.includes('excel')
-      ? this.routes.excel
-      : this.routes.dashboard
+    init(){
+        window.addEventListener('hashchange', this.changePageHandler)
+        this.changePageHandler()
+    }
 
-    this.page = new Page(ActiveRoute.param)
+    async changePageHandler(){
+        if(this.page){
+            this.page.destroy()
+        }
+        this.$placeholder.clear().append(this.loader)
 
-    const root = await this.page.getRoot()
+        const Page = ActiveRoute.path.includes('excel')
+            ? this.routes.excel
+            : this.routes.dashboard
 
-    this.$placeholder.clear().append(root)
+        this.page = new Page(ActiveRoute.param)
 
-    this.page.afterRender()
-  }
+        const root = await this.page.getRoot()
 
-  destroy(){
-    window.removeEventListener('hashchange', this.changePageHandler)
-  }
+        this.$placeholder.clear().append(root)
+
+        this.page.afterRender()
+    }
+
+    destroy(){
+        window.removeEventListener('hashchange', this.changePageHandler)
+    }
 }

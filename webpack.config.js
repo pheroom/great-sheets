@@ -41,7 +41,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, 'src/favicon.ico'),
+                    from: path.resolve(__dirname, 'src/logo.png'),
                     to: path.resolve(__dirname, 'dist'),
                 }
             ]
@@ -70,15 +70,15 @@ module.exports = {
                         plugins: ['@babel/plugin-transform-runtime']
                     }
                 }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             }
         ],
     }
 }
-
-
-
-
-
-
-
-

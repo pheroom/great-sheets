@@ -3,7 +3,9 @@
 
 @import '_mixins';
 @import '_variables';
+@import '_reset';
 
+@import 'ui';
 @import 'header';
 @import 'toolbar';
 @import 'formula';
@@ -12,20 +14,23 @@
 @import 'loader';
 
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body{
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+#app{
+    height: 100vh;
 }
 
 .excel{
-  position: relative;
-  color: #888;
-  height: 100%;
-  max-width: 100%;
-  font-size: .8rem;
+    position: relative;
+    color: #888;
+    max-width: 100%;
+    font-size: .8rem;
 }

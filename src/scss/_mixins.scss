@@ -1,25 +1,32 @@
 @mixin button($color: green) {
-  height: 28px;
-  min-width: 28px;
-  padding: 3px;
-  text-align: center;
-  position: relative;
-  display: inline-block;
-  color: rgba(0, 0, 0, .7);
-  & i{
-    font-size: 22px;
-    &:active, &.active{
-      color: $color;
-    }
+    height: 28px;
+    min-width: 28px;
+    padding: 3px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    color: rgba(0, 0, 0, .7);
     &:hover{
-      background: #eee;
-      cursor: pointer;
+        background: #eee;
+        cursor: pointer;
     }
-  }
+    & i{
+        //text-align: center;
+        vertical-align: middle;
+        font-size: 22px;
+        margin-top: 1px;
+        &:active, &.active{
+            color: $color;
+        }
+        //&:hover{
+        //    background: #eee;
+        //    cursor: pointer;
+        //}
+    }
 }
 
 @mixin clear-list() {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }

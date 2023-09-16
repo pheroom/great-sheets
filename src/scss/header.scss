@@ -1,32 +1,22 @@
 .header{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: $header-height;
-  padding: 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  &__input{
-    margin: 0;
-    padding: 2px 7px;
-    min-width: 1px;
-    color: black;
-    border: 2px solid transparent;
-    border-radius: 2px;
-    height: 26px;
-    font-size: 18px;
-    line-height: 22px;
-    outline: none;
-    &:hover{
-      border: 2px solid $border-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    padding: 0 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    &__input{
+        font-size: 18px;
     }
-    &:focus{
-      border: 2px solid #1a73e8;
+    &__actions{
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
     }
-  } 
-  &__button{
-    @include button(red);
-  }
 }

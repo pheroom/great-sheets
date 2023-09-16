@@ -1,63 +1,21 @@
 .toolbar {
-  position: absolute;
-  top: $header-height;
-  height: $toolbar-height;
-  left: 0;
-  right: 0;
-  border-top: 1px solid $border-color;
-  border-bottom: 1px solid $border-color;
-  display: flex;
-  align-items: center;
-  padding-left: 8px;
-
-  &__button, &__select {
-    @include button();
-    text-align: center;
-  }
-
-  &__select {
-    position: relative;
-  }
-}
-
-.select-led{
-  margin-left: 5px;
-  margin-right: 15px;
-  height: 28px;
-  width: 10px;
-  outline: 3px solid #bebebe;
-}
-
-.select-modal{
-  position: absolute;
-  top: $toolbar-height;
-  left: 0;
-  background: #dadada;
-  display: flex;
-  width: 150px;
-  z-index: 20;
-  border: 1px solid $border-color;
-  border-radius: 4px;
-
-  &--hidden{
-    display: none;
-  }
-
-  &__inner {
-    padding: 10px 0 10px 10px;
+    position: absolute;
+    top: $header-height;
+    height: $toolbar-height;
+    left: 0;
+    right: 0;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  &__item:hover{
-    outline: 5px solid #bebebe;
-  }
-
-  &__button {
-    i {
-      cursor: pointer;
+    align-items: center;
+    padding-left: 10px;
+    gap: 5px;
+    user-select: none;
+    &__button, &__select {
+        @include button();
     }
-    margin: 5px;
-  }
+
+    &__select {
+        position: relative;
+    }
 }
